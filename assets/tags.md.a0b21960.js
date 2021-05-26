@@ -1,0 +1,1 @@
+import{r as t,o as a,c as e,a as r}from"./app.3132835d.js";const s='{"title":"tags","description":"","frontmatter":{"title":"tags","page":true,"sidebar":false},"relativePath":"tags.md","lastUpdated":1619591945560}',o={};o.render=function(s,o,d,i,n,l){const p=t("Tags",!0);return a(),e("div",null,[r(p)])};export default o;export{s as __pageData};

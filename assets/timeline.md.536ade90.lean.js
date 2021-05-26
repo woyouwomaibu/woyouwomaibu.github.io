@@ -1,0 +1,1 @@
+import{r as e,o as t,c as i,a}from"./app.3132835d.js";const r='{"title":"timeline","description":"","frontmatter":{"page":true,"sidebar":false,"title":"timeline"},"relativePath":"timeline.md","lastUpdated":1620270728250}',n={};n.render=function(r,n,l,s,o,d){const m=e("Timeline",!0);return t(),i("div",null,[a(m)])};export default n;export{r as __pageData};

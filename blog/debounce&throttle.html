@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>
+      防抖与节流 | Fxxk it
+    </title>
+    <meta name="description" content="js中的防抖与节流">
+    <link rel="stylesheet" href="/assets/style.faa02b30.css">
+    <link rel="modulepreload" href="/assets/Home.c68b567a.js">
+    <link rel="modulepreload" href="/assets/app.3132835d.js">
+    <link rel="modulepreload" href="/assets/blog_debounce&throttle.md.cfab097c.lean.js">
+    <link rel="modulepreload" href="/assets/app.3132835d.js">
+    
+    
+  </head>
+  <body>
+    <div id="app"><!--[--><div class="theme"><header class="nav-bar" data-v-5f2a93a0><div class="sidebar-button" data-v-5f2a93a0><svg class="icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z" class></path></svg></div><a class="nav-bar-title" href="/" aria-label="Fxxk it, back to home" data-v-5f2a93a0 data-v-3e3fd8b1><!----> Fxxk it</a><div class="flex-grow" data-v-5f2a93a0></div><div class="nav" data-v-5f2a93a0><nav class="nav-links" data-v-5f2a93a0 data-v-3e8ce7f4><!--[--><div class="item" data-v-3e8ce7f4><div class="nav-link" data-v-3e8ce7f4 data-v-c272f228><a class="item" href="/" data-v-c272f228>Home <!----></a></div></div><div class="item" data-v-3e8ce7f4><div class="nav-link" data-v-3e8ce7f4 data-v-c272f228><a class="item" href="/timeline" data-v-c272f228>Timeline <!----></a></div></div><div class="item" data-v-3e8ce7f4><div class="nav-link" data-v-3e8ce7f4 data-v-c272f228><a class="item" href="/tags" data-v-c272f228>Tags <!----></a></div></div><!--]--><!----><!----></nav></div><!--[--><!--]--></header><aside class="sidebar" data-v-cecf9396><nav class="nav-links nav" data-v-cecf9396 data-v-3e8ce7f4><!--[--><div class="item" data-v-3e8ce7f4><div class="nav-link" data-v-3e8ce7f4 data-v-c272f228><a class="item" href="/" data-v-c272f228>Home <!----></a></div></div><div class="item" data-v-3e8ce7f4><div class="nav-link" data-v-3e8ce7f4 data-v-c272f228><a class="item" href="/timeline" data-v-c272f228>Timeline <!----></a></div></div><div class="item" data-v-3e8ce7f4><div class="nav-link" data-v-3e8ce7f4 data-v-c272f228><a class="item" href="/tags" data-v-c272f228>Tags <!----></a></div></div><!--]--><!----><!----></nav><!--[--><!--]--><!----><!--[--><!--]--></aside><!-- TODO: make this button accessible --><div class="sidebar-mask"></div><main class="page" data-v-0b59ecd0><div class="container" data-v-0b59ecd0><!--[--><!--]--><div class="docs-title" data-v-0b59ecd0>防抖与节流</div><div class="content" data-v-0b59ecd0><div data-v-0b59ecd0><div class="language-js"><pre><code><span class="token keyword">function</span> <span class="token function">debounce</span> <span class="token punctuation">(</span><span class="token parameter">fn<span class="token punctuation">,</span> time<span class="token punctuation">,</span> immediate</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+    <span class="token keyword">let</span> timer <span class="token operator">=</span> <span class="token keyword">null</span> 
+    <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+        <span class="token keyword">let</span> args <span class="token operator">=</span> arguments 
+        <span class="token keyword">let</span> context <span class="token operator">=</span> <span class="token keyword">this</span> 
+        <span class="token keyword">if</span><span class="token punctuation">(</span>immediate <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>timer<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+            <span class="token function">fn</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> args<span class="token punctuation">)</span> 
+        <span class="token punctuation">}</span> 
+        <span class="token keyword">if</span><span class="token punctuation">(</span>timer<span class="token punctuation">)</span> <span class="token function">clearTimeout</span><span class="token punctuation">(</span>timer<span class="token punctuation">)</span> 
+        timer <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> 
+            <span class="token function">fn</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> args<span class="token punctuation">)</span> 
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> time<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span> 
+
+funtion <span class="token function">throttle</span> <span class="token punctuation">(</span><span class="token parameter">fn<span class="token punctuation">,</span> time<span class="token punctuation">,</span> immediate</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+    <span class="token keyword">let</span> timer <span class="token operator">=</span> <span class="token keyword">null</span> 
+    <span class="token keyword">let</span> callnow <span class="token operator">=</span> immediate 
+    <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+        <span class="token keyword">let</span> args <span class="token operator">=</span> arguments 
+        <span class="token keyword">let</span> context <span class="token operator">=</span> <span class="token keyword">this</span> 
+        <span class="token keyword">if</span><span class="token punctuation">(</span>callnow <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>timer<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+            <span class="token function">fn</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> args<span class="token punctuation">)</span> 
+            callnow <span class="token operator">=</span> <span class="token boolean">false</span> 
+        <span class="token punctuation">}</span> 
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>timer<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+            timer <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> 
+                <span class="token function">fn</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> args<span class="token punctuation">)</span> 
+                timer <span class="token operator">=</span> <span class="token keyword">null</span> 
+            <span class="token punctuation">}</span><span class="token punctuation">,</span> time<span class="token punctuation">)</span> 
+        <span class="token punctuation">}</span>  
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span> 
+</code></pre></div></div></div><footer class="page-footer" data-v-0b59ecd0 data-v-22e60b1a><div class="edit" data-v-22e60b1a><div class="edit-link" data-v-22e60b1a data-v-045573c2><!----></div></div><div class="updated" data-v-22e60b1a><p class="last-updated" data-v-22e60b1a data-v-ff2f0e00><span class="prefix" data-v-ff2f0e00>Last Updated:</span><span class="datetime" data-v-ff2f0e00></span></p></div></footer><!----><div id="disqus_thread" style="" data-v-0b59ecd0></div><!--[--><!--]--></div></main></div><!----><!--]--></div>
+    <script>__VP_HASH_MAP__ = JSON.parse("{\"index.md\":\"68109af9\",\"tags.md\":\"a0b21960\",\"timeline.md\":\"536ade90\",\"blog_debounce&throttle.md\":\"cfab097c\",\"blog_deepclone.md\":\"39887281\",\"blog_gitcommand.md\":\"339f4fc6\",\"blog_gituser.md\":\"35853a0f\",\"blog_jseventloop.md\":\"898c2759\"}")</script>
+    <script type="module" async src="/assets/app.3132835d.js"></script>
+  </body>
+</html>
